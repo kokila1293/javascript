@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 == 0.3);
+
+</script>
+<style>
+
+</style>
+</head>
+<body>
+<p>Activate debugging with F12
+Select "Console" in the debugger menu. Then click Run again.
+why 0.1 [plus 0.2 is not equal to 0.3 
+
+An educated answer to this question would simply be: “You can’t be sure. it might print out 0.3 and true, or it might not. Numbers in JavaScript are all treated with floating point precision, and as such, may not always yield the expected results.”
+
+The example provided above is classic case that demonstrates this issue. Surprisingly, it will print out:
+
+0.30000000000000004
+false
+
+</p>
+
+
+
+</body>
+</html>
