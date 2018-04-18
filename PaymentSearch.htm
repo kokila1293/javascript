@@ -1,0 +1,619 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<meta name="GENERaTOR" content="Microsoft Visual Studio 6.0">
+<link rel="stylesheet" type="text/css" href="StyleContent.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="PaymentSearchValidation.js"></script>
+<script>
+
+$(document).ready(function() {
+    $( "#prevdate,#currdate" ).datepicker({
+	  dateFormat: 'mm/dd/yy',
+      showOn: "button",
+      buttonImage: "images/calendar1.png",
+      buttonImageOnly: true,
+      buttonText: "Select date",
+	  changeMonth: true,
+      changeYear: true,
+	   showButtonPanel: true,
+            closeText: 'Clear Entry', // Text to show for "close" button
+            onClose: function () {
+                var event = arguments.callee.caller.caller.arguments[0];
+                // If "Clear" gets clicked, then really clear it
+                if ($(event.delegateTarget).hasClass('ui-datepicker-close')) {
+                    $(this).val('');
+                }
+            }
+    });
+	   });
+  </script>
+  <style>
+.ui-datepicker-buttonpane.ui-widget-content {
+margin-top:0px;
+}
+table.ui-datepicker-calendar {
+margin-bottom:0px;
+}
+.ui-datepicker-buttonpane.ui-widget-content {
+border-top-width: 0px;
+}
+button.ui-datepicker-close.ui-state-default.ui-priority-primary.ui-corner-all {
+margin:0px;
+font-weight:normal;
+color:black;
+font-size:12px;
+font-family:verdana;
+margin-bottom:1px;
+}
+button.ui-datepicker-current.ui-state-default.ui-priority-secondary.ui-corner-all {
+margin:0px;
+font-weight:normal;
+color:black;
+font-size:12px;
+font-family:verdana;
+margin-bottom:1px;
+}
+table.ui-datepicker-calendar {
+    background-color: #6495ED;	
+}
+div#ui-datepicker-div {
+background-color: #6495ED;
+}
+.ui-datepicker-title {
+background-color: #6495ED;
+}
+.ui-widget-header {
+    border:none;
+    background: #6495ED;
+    color: #333333;
+    font-weight: bold;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid #fff;
+    background: #6495ED;
+    font-weight: normal;
+    color: #ffffff;
+}
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
+    opacity: 1;
+}
+  </style>
+<style>
+
+ A.Menu
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 10px;
+         MARGIN-BOTTOM: 2px;
+         MARGIN-TOP: 3px;
+         SIZE: 1px;
+         TEXT-ALIGN: Center;
+         TEXT-DECORATION: none;
+         }
+         TD.Menu
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: #FFFFFF;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: bolder;
+         HEIGHT: 12pt;
+         }
+         TR.Menu
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: bolder;
+         HEIGHT: 10px;
+         MARGIN-BOTTOM: 2px;
+         MARGIN-TOP: 3px;
+         }
+         Table.Menuframe
+         { BACKGROUND-COLOR: #6495ED;
+         BORDER-BOTTOM: #FFFFFF;
+         BORDER-LEFT: #FFFFFF;
+         BORDER-RIGHT: #FFFFFF;
+         BORDER-TOP: #FFFFFF;
+         COLOR: #FFFFFF;
+         HEIGHT: 12pt;
+         TEXT-ALIGN: left;
+         WIDTH: 100%;
+         }
+         Table.Menu
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: bolder;
+         HEIGHT: 15pt;
+         TEXT-ALIGN: center;
+         }
+         .SideMenuCell
+         { BACKGROUND-COLOR: #6495ED;
+         COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         TEXT-DECORATION: none;
+         }
+         .Label
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         TEXT-ALIGN: Left;
+         TEXT-VALIGN: Top;
+         }
+         .Element
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         }
+         .Caption
+         { BACKGROUND-COLOR: #999999;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         }
+         .CaptionSub
+         { BACKGROUND-COLOR: #CCCCCC;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         }
+         .HeaderOne
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 15px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         }
+         .ResultHeadDk
+         { BACKGROUND-COLOR: #999999;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Center;
+         }
+         .ResultHeadLt
+         { BACKGROUND-COLOR: #CCCCCC;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Center;
+         }
+         .RowResultDk
+         { BACKGROUND-COLOR: #CCCCCC;
+         }
+         .RowResultLt
+         { BACKGROUND-COLOR: #FFFFFF;
+         }
+         .ResultCell
+         { FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         TEXT-ALIGN: Center;
+         }
+         .ErrorMsg
+         { COLOR: #ff0000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         }
+         .ErrorLabel
+         { COLOR: #ff0000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         TEXT-ALIGN: Left;
+         TEXT-VALIGN: Top;
+         }
+         .SideMenuLink
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         TEXT-DECORATION: none;
+         }
+         .SuccessMsg
+         { COLOR: #6495ED;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         TEXT-VALIGN: Top;
+         }
+         .ResultCellLeft
+         { FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         TEXT-ALIGN: Left;
+         }
+         .MessageInfo
+         { COLOR: #2e8b57;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         }
+         .MessageWarn
+         { COLOR: #ff6600;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         }
+         .SimpleLink
+         { COLOR: #004080;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         TEXT-DECORATION: none;
+         }
+         .SimpleLink:Hover
+         { COLOR: #0099FF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         TEXT-DECORATION: Underline;
+         }
+         .ResultLink
+         { COLOR: #004080;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         TEXT-DECORATION: none;
+         }
+         .ResultLink:Hover
+         { COLOR: #0099FF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         TEXT-DECORATION: Underline;
+         }
+         .SimpleText
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         }
+         .Box
+         { BORDER: Solid;
+         BORDER-COLOR: #CCCCCC;
+         BORDER-WIDTH: Thin;
+         HEIGHT: 100%;
+         WIDTH: 100%;
+         }
+         .ElementCell
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         }
+         .ElementButton
+         { CURSOR: Hand;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         }
+         .HeaderTwo
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 12px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         }
+         .ItalicLabel
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-STYLE: Italic;
+         }
+         TD.CaptionSub
+         { BACKGROUND-COLOR: #CCCCCC;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Left;
+         }
+         TD.CSSMenu
+         { BACKGROUND-COLOR: #6495ED;
+         COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 12pt;
+         }
+         .ItalicLabelSm
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 9px;
+         FONT-STYLE: Italic;
+         }
+         TR.CSSMenu
+         { BACKGROUND-COLOR: #6495ED;
+         COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 12pt;
+         }
+         .RowShadeLt
+         { BACKGROUND-COLOR: #CCCCCC;
+         }
+         TABLE.CSSMenu
+         { BACKGROUND-COLOR: #6495ED;
+         COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 15pt;
+         TEXT-ALIGN: Center;
+         }
+         .HeadTahomaDk
+         { BACKGROUND-COLOR: #999999;
+         FONT-FAMILY: Tahoma;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Center;
+         }
+         .CSSMenuActive2
+         { BACKGROUND-COLOR: #CCCCCC;
+         COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 12px;
+         FONT-WEIGHT: Bold;
+         HEIGHT: 20px;
+         MARGIN-LEFT: 3px;
+         TEXT-DECORATION: none;
+         }
+         .ResultCellTahoma
+         { FONT-FAMILY: Tahoma;
+         FONT-SIZE: 9px;
+         TEXT-ALIGN: Center;
+         }
+         .ResultCellTahomaGr
+         { COLOR: #2e8b57;
+         FONT-FAMILY: Tahoma;
+         FONT-SIZE: 9px;
+         TEXT-ALIGN: Center;
+         }
+         .CSSHome
+         { BORDER-BOTTOM: #808080;
+         BORDER-LEFT: #808080;
+         BORDER-RIGHT: #808080;
+         BORDER-TOP: #808080;
+         COLOR: #808080;
+         FONT-FAMILY: Verdana;
+         }
+         .CSSLink
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         TEXT-DECORATION: Underline;
+         }
+         .HeadTahomaLt
+         { BACKGROUND-COLOR: #CCCCCC;
+         FONT-FAMILY: Tahoma;
+         FONT-SIZE: 10px;
+         FONT-WEIGHT: Bold;
+         TEXT-ALIGN: Center;
+         }
+         .CSSLink2
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bold;
+         TEXT-DECORATION: Underline;
+         }
+         .CSSMenuActive
+         { COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         TEXT-DECORATION: none;
+         }
+         TD.CSSMenuActive
+         { BACKGROUND-COLOR: #CCCCCC;
+         COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 12pt;
+         }
+         TR.CSSMenuActive
+         { BACKGROUND-COLOR: #CCCCCC;
+         COLOR: #000000;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 12px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 12pt;
+         }
+         TABLE.CSSMenuframe
+         { BACKGROUND-COLOR: #6495ED;
+         BORDER-BOTTOM: #FFFFFF;
+         BORDER-LEFT: #FFFFFF;
+         BORDER-RIGHT: #FFFFFF;
+         BORDER-TOP: #FFFFFF;
+         COLOR: #FFFFFF;
+         HEIGHT: 12pt;
+         TEXT-ALIGN: Left;
+         WIDTH: 100%;
+         }
+         A.CSSMenu
+         { COLOR: #FFFFFF;
+         FONT-FAMILY: Verdana;
+         FONT-SIZE: 11px;
+         FONT-WEIGHT: Bolder;
+         HEIGHT: 10px;
+         MARGIN-BOTTOM: 2px;
+         MARGIN-TOP: 3px;
+         SIZE: 1px;
+         TEXT-ALIGN: Center;
+         TEXT-DECORATION: none;
+         }  
+</style>
+
+</script>
+</head>
+<body>
+<table border="0" cellspacing="0" cellpadding="0" width="600">
+<tbody>
+<tr>
+<td rowspan="3" width="70" align="center"><img blockedImageSrc="./images/DLLLogo.gif" border="0" width="62" height="58">
+</td>
+<td bgcolor="#FFFFFF" colspan="2">
+<hr>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table class="menuframe" border="1" cellspacing="0" cellpadding="0" width="100%" bgcolor="#6495ED">
+<tbody>
+<tr class="menu">
+<td class="menu">
+<table class="menu" cellspacing="0" cellpadding="0">
+<tbody>
+<tr class="menu">
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a class="menu" href="#"><strong>Home </strong></a></td>
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a href="#" class="menu"><strong>apply </strong></a></td>
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a href="#" class="menu"><strong>Search </strong></a></td>
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a href="#" class="menu"><strong>Maintain </strong></a></td>
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a href="#" class="menu"><strong>Reports </strong></a></td>
+<td class="menu" width="10">|</td>
+<td class="menu" width="70"><a class="menu" href="#"><strong>Exit </strong></a></td>
+<td class="menu" width="10">|</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFFF" colspan="2">
+<hr>
+</td>
+</tr>
+<tr>
+<td bgcolor="#FFFFFF" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+<table align="Left" height="100%" width="600px" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<table align="left" valign="top" width="150px" height="100%" border="0" cellpadding="3" cellspacing="0">
+<tbody>
+<tr align="left">
+<td width="10px" class="SideMenuCell" valign="top">&nbsp;</td>
+<td nowrap="" width="150px" class="SideMenuCell" valign="top">
+<br>
+</td>
+</tr>
+</tbody>
+</table>
+<table align="Left" height="100%" width="150" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<form method="" name="Default"></td>
+</tr>
+</tbody>
+</table>
+</form>
+</td>
+<td>
+<div id="paymentvalerror" style="color:red; font-size:14px"></div>
+<table align="Left" height="100%" width="450px" border="0" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td>
+<div class="Box">
+<div class="headerOne">Payment Search Criteria </div>
+<table cellspacing="0" cellpadding="3" width="100%" border="0">
+<tbody>
+<tr>
+<th height="15px" class="CaptionSub" colspan="5">Search by</th>
+</tr>
+<tr>
+<th class="Label" width="120px">Check Number: </th>
+<td class="ElementCell" colspan="3"><input type="text" id="checknumber" name="Check" maxlength="8" value="" size="10" class="Element">
+</td>
+</tr>
+<tr>
+<th height="15px" class="CaptionSub" colspan="2">and / or Search by</th>
+</tr>
+<tr>
+<th nowrap="">
+<div class="Label">Lease Number: <br>
+</div>
+</th>
+<td class="ElementCell"><input type="text" id="paymentleasenumber" name="Lease" maxlength="8" value="" size="10" class="Element">
+</td>
+</tr>
+<tr>
+<th height="15px" class="CaptionSub" colspan="2">or Search by</th>
+</tr>
+<tr>
+<th nowrap="">
+<div class="Label">Invoice Number: <br>
+</div>
+</th>
+<td class="ElementCell"><input type="text" id="invoicenumber" name="Invoice" maxlength="11" value="" size="15" class="Element">
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<table cellspacing="0" cellpadding="3" width="100%" border="0">
+<tbody>
+<tr>
+<th height="15px" class="Caption" colspan="5">Limit Search - Search by payment amount and date range only, or limit your search.
+</th>
+</tr>
+<tr>
+<td class="Label" colspan="6">You can narrow your search by entering a Payment amount or Payment Posted Date range. the date range can not be more than 6 months.</td>
+</tr>
+<tr>
+<th class="Label">Payment amount:</th>
+<td class="ElementCell"><input type="text" name="Paymentamount" id="paymentamount" maxlength="10" value="" size="12" class="Element">
+</td>
+</tr>
+<tr>
+<th nowrap="">
+<div class="Label">From / To:</div>
+</th>
+<td class="ElementCell"><input type="hidden" name="DateToFrom" value=""> 
+<input class="Element" name="DateFrom" type = "text" id="prevdate" value="" maxlength="10" size="12">&nbsp;
+&nbsp;&nbsp;
+ <input class="Element" name="DateTo" type = "text" id="currdate"  value = "" maxlength="10" size="12">&nbsp;
+</td>
+</tr>
+</tbody>
+</table>
+<table width="100%" border="0">
+<tbody>
+<tr>
+<td align="left"></td>
+<td align="right"><input type="Submit" name="Submit" id="paymentsearch" value="Search" class="ElementButton" tabindex="0">&nbsp;&nbsp;
+<input type="Button" name="Clear" id="paymentclearbutton" value="Clear" class="ElementButton" tabindex="0">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<input type="hidden" name="SearchBy" value="">
+</body>
+</html>
